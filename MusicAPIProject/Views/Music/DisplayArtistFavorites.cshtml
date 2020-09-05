@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Artist Favorites";
+}
+
+@model List<Artist>
+<h3>These are you favorite artists!</h3>
+
+<table class="table table-bordered">
+
+    <tr class="d-table-row">
+        <th>Artist</th>
+        <th>Picture</th>
+    </tr>
+
+    @foreach (Artist artist in Model)
+    {
+        <tr>
+            <td>@artist.name</td>
+            <td><img src="@artist.picture_small" /> </td>
+            <td class="btn-outline-danger">
+                <a href="../Music/DeleteArtist?id=@artist.id">Delete this Artist</a>
+        </tr>
+    }
+</table>
+
+<form asp-action="SearchResult" method="post">
+    <a href="../Music/Search">Search Again?</a> 
+</form>
+

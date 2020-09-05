@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Search Result Artist";
+}
+@model MusicObject
+
+<h5>Artist Search Results</h5>
+
+<div>
+    <table class="table table-bordered">
+
+        <tr class="d-table-row">
+            <th>Artist</th>
+            <th>Picture</th>
+            <th>Albums</th>
+        </tr>
+
+        @for (int i = 0; i <= 5; i++)
+        {
+            <tr>
+                <td>@Model.data[i].artist.name</td>
+                <td><img src="@Model.data[i].artist.picture_small" /></td>
+                <td>
+                    @for (int a = 0; a <= 3; a++)
+                    {
+                        <img src="@Model.data[a].album.cover_small" />
+                        <p>@Model.data[a].album.title</p>
+                        <br />
+                    }
+                </td>
+                <td>
+                    <a href="../Music/SaveFavoriteArtist?id=@Model.data[i].artist.id" class="btn btn-primary btn-sm btn btn-outline-success">
+                        Add to Favorite Artists
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <br />
+    <a href="../Music/Search">Search again?</a>
+</div>
